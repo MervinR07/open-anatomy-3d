@@ -8,7 +8,7 @@ named mesh, plus a typed catalog of all of them and a ready-made React viewer.
 [npm: open-anatomy-3d](https://www.npmjs.com/package/open-anatomy-3d) ·
 [npm: open-anatomy-3d-react](https://www.npmjs.com/package/open-anatomy-3d-react)
 
-![The viewer: male body in light mode, female body in dark mode, with pinned callouts](docs/screenshot.png)
+<p align="center"><img src="docs/screenshot.png" width="560" alt="The viewer: male body on a dark background with pinned callouts"></p>
 
 | Package | What it is |
 | --- | --- |
