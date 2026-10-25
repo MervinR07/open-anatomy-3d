@@ -1,0 +1,75 @@
+{
+  "name": "open-anatomy-3d-react",
+  "version": "0.1.0",
+  "description": "Interactive 3D human anatomy viewer for React (react-three-fiber): orbit, zoom, toggle body systems, hover and click any structure, pin callouts.",
+  "keywords": [
+    "anatomy",
+    "human-body",
+    "3d",
+    "react",
+    "react-three-fiber",
+    "three.js",
+    "medical",
+    "viewer"
+  ],
+  "license": "MIT",
+  "author": "MervinR07 (https://github.com/MervinR07)",
+  "homepage": "https://github.com/MervinR07/open-anatomy-3d#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MervinR07/open-anatomy-3d.git",
+    "directory": "packages/open-anatomy-3d-react"
+  },
+  "bugs": "https://github.com/MervinR07/open-anatomy-3d/issues",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./styles.css": "./dist/styles.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc -p .",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "open-anatomy-3d": "^0.1.0"
+  },
+  "peerDependencies": {
+    "@react-three/drei": "^9.88.0",
+    "@react-three/fiber": "^8.15.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "three": ">=0.155.0"
+  },
+  "devDependencies": {
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/three": "^0.169.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.169.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3"
+  }
+}

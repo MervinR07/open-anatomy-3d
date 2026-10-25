@@ -1,0 +1,22 @@
+{
+  "name": "open-anatomy-3d-monorepo",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/open-anatomy-3d",
+    "packages/open-anatomy-3d-react",
+    "demo"
+  ],
+  "scripts": {
+    "build": "npm run build -w open-anatomy-3d && npm run build -w open-anatomy-3d-react",
+    "verify": "npm run verify -w open-anatomy-3d",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "dev": "npm run build && npm run dev -w demo",
+    "demo:build": "npm run build && npm run build -w demo",
+    "demo:deploy": "npm run demo:build && node scripts/deploy-demo.mjs"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3"
+  }
+}

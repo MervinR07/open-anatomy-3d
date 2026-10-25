@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+# pipeline inputs and intermediates (large, downloaded or generated)
+pipeline/src_dataset/
+pipeline/female/
+pipeline/mh/
+pipeline/out/
+pipeline/fj_index.json
+pipeline/fj_names.txt

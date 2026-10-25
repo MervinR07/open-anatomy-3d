@@ -1,0 +1,397 @@
+/* open-anatomy-3d-react — viewer styles.
+   Theme it by overriding the --oa3d-* custom properties on your own class
+   passed as className (e.g. .my-viewer.oa3d-viewer { --oa3d-accent: #0a7 }).
+   Dark mode follows prefers-color-scheme, or set
+   data-theme="dark" / "light" on an ancestor to force one. */
+
+.oa3d-viewer {
+  --oa3d-accent: #e8590c;
+  --oa3d-accent-deep: #c2410c;
+  --oa3d-on-accent: #ffffff;
+  --oa3d-surface: #ffffff;
+  --oa3d-surface-sunken: #f3f1ee;
+  --oa3d-border: #e2ded8;
+  --oa3d-text: #1f1d1a;
+  --oa3d-text-muted: #6b665f;
+  --oa3d-shadow: rgb(31 29 26 / 0.18);
+  --oa3d-radius: 16px;
+  --oa3d-font: inherit;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  font-family: var(--oa3d-font);
+  color: var(--oa3d-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .oa3d-viewer {
+    --oa3d-surface: #1f1f23;
+    --oa3d-surface-sunken: #141417;
+    --oa3d-border: #34343b;
+    --oa3d-text: #f2f0ed;
+    --oa3d-text-muted: #a5a29d;
+    --oa3d-shadow: rgb(0 0 0 / 0.5);
+  }
+}
+
+[data-theme="dark"] .oa3d-viewer {
+  --oa3d-surface: #1f1f23;
+  --oa3d-surface-sunken: #141417;
+  --oa3d-border: #34343b;
+  --oa3d-text: #f2f0ed;
+  --oa3d-text-muted: #a5a29d;
+  --oa3d-shadow: rgb(0 0 0 / 0.5);
+}
+
+.oa3d-viewer button {
+  font-family: inherit;
+}
+
+.oa3d-viewer :focus-visible {
+  outline: 2px solid var(--oa3d-accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Male / Female switch ---------- */
+
+.oa3d-sex-toggle {
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--oa3d-surface-sunken);
+  border: 1px solid var(--oa3d-border);
+}
+
+.oa3d-sex-option {
+  position: relative;
+  z-index: 1;
+  min-width: 84px;
+  height: 30px;
+  padding: 0 14px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--oa3d-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 200ms;
+}
+
+.oa3d-sex-option-on {
+  color: var(--oa3d-on-accent);
+}
+
+.oa3d-sex-thumb {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  border-radius: 999px;
+  background: var(--oa3d-accent);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--oa3d-accent-deep) 35%, transparent);
+  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.oa3d-sex-thumb-right {
+  transform: translateX(100%);
+}
+
+/* ---------- Body-system layer toggles ---------- */
+
+.oa3d-layers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.oa3d-layer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--oa3d-border);
+  background: var(--oa3d-surface);
+  color: var(--oa3d-text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 150ms, color 150ms, border-color 150ms;
+}
+
+.oa3d-layer:hover {
+  border-color: var(--oa3d-accent);
+}
+
+.oa3d-layer-on {
+  color: var(--oa3d-text);
+  border-color: color-mix(in srgb, var(--oa3d-accent) 50%, transparent);
+  background: color-mix(in srgb, var(--oa3d-accent) 12%, var(--oa3d-surface));
+}
+
+.oa3d-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 0.35;
+}
+
+.oa3d-layer-on .oa3d-swatch {
+  opacity: 1;
+}
+
+.oa3d-swatch-skin { background: #e9b596; }
+.oa3d-swatch-muscles { background: #b5463d; }
+.oa3d-swatch-skeleton { background: #d9ccb0; }
+.oa3d-swatch-joints { background: #ff9a3c; }
+.oa3d-swatch-organs { background: #c96f5d; }
+.oa3d-swatch-vessels { background: linear-gradient(90deg, #c0392b 50%, #2e6db4 50%); }
+.oa3d-swatch-nerves { background: #f2c14e; }
+
+/* ---------- Canvas frame ---------- */
+
+.oa3d-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.08;
+  min-height: 460px;
+  border-radius: var(--oa3d-radius);
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 42%, var(--oa3d-surface) 0%, var(--oa3d-surface-sunken) 100%);
+}
+
+.oa3d-canvas canvas {
+  cursor: grab;
+  touch-action: none;
+}
+
+.oa3d-canvas canvas:active {
+  cursor: grabbing;
+}
+
+.oa3d-canvas-pointer canvas {
+  cursor: pointer;
+}
+
+/* ---------- Callouts ---------- */
+
+.oa3d-callout-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.oa3d-callout-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.oa3d-callout-svg polyline,
+.oa3d-callout-svg circle {
+  transition: opacity 150ms;
+}
+
+.oa3d-callout-line-active polyline {
+  stroke-width: 2.5;
+}
+
+.oa3d-callout-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--oa3d-border);
+  border-left-width: 4px;
+  background: var(--oa3d-surface);
+  box-shadow: 0 8px 22px -8px var(--oa3d-shadow);
+  cursor: pointer;
+  text-align: left;
+  pointer-events: auto;
+  transition: opacity 150ms, box-shadow 150ms;
+  will-change: transform;
+}
+
+.oa3d-callout-title {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.oa3d-callout-subtitle {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--oa3d-text-muted);
+}
+
+.oa3d-callout-items {
+  font-size: 12.5px;
+  line-height: 1.35;
+  color: var(--oa3d-text);
+}
+
+/* ---------- Hover label ---------- */
+
+.oa3d-hover-tag {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--oa3d-text) 88%, transparent);
+  color: var(--oa3d-surface);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.oa3d-hover-name {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.oa3d-hover-hint {
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+/* ---------- Zoom / reset ---------- */
+
+.oa3d-zoom,
+.oa3d-reset {
+  position: absolute;
+  bottom: 14px;
+  height: 34px;
+  border-radius: 999px;
+  border: none;
+  background: var(--oa3d-surface);
+  box-shadow: 0 2px 8px var(--oa3d-shadow);
+  color: var(--oa3d-text);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.oa3d-zoom {
+  width: 34px;
+  font-size: 18px;
+}
+
+.oa3d-zoom-out {
+  left: 50%;
+  margin-left: -80px;
+}
+
+.oa3d-zoom-in {
+  left: 50%;
+  margin-left: 46px;
+}
+
+.oa3d-reset {
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 14px;
+  font-size: 12px;
+}
+
+.oa3d-zoom:hover,
+.oa3d-reset:hover {
+  background: var(--oa3d-surface-sunken);
+}
+
+/* ---------- Rotate arc ---------- */
+
+.oa3d-rotate {
+  position: relative;
+  width: 220px;
+  height: 40px;
+}
+
+.oa3d-rotate-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  stroke: var(--oa3d-border);
+}
+
+.oa3d-rotate-handle {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: var(--oa3d-accent);
+  color: var(--oa3d-on-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: ew-resize;
+  touch-action: none;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--oa3d-accent-deep) 35%, transparent);
+}
+
+.oa3d-rotate-handle:hover,
+.oa3d-rotate-handle-active {
+  background: var(--oa3d-accent-deep);
+}
+
+.oa3d-rotate-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------- Loading ---------- */
+
+.oa3d-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.oa3d-loading-bar {
+  width: 160px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--oa3d-border);
+  overflow: hidden;
+}
+
+.oa3d-loading-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--oa3d-accent);
+  transition: width 200ms;
+}
+
+.oa3d-loading-text {
+  font-size: 13px;
+  color: var(--oa3d-text-muted);
+}
