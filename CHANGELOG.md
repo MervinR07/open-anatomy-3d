@@ -1,5 +1,10 @@
 # Changelog
 
+## open-anatomy-3d-react 0.1.1 — 2026-10-25
+
+- Viewer buttons no longer pick up the host page's global `button` styles
+  (e.g. the Vite React template), which hid the rotate handle's icon.
+
 ## 0.1.0 — 2026-10-25
 
 First public release.

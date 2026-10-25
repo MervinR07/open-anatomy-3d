@@ -53,6 +53,10 @@ export function BodyMap() {
 Tested with React 18 + `@react-three/fiber` 8 + `@react-three/drei` 9. The
 component is client-only (it ships with `'use client'` for Next.js).
 
+The viewer fills the width of its parent. If it sits against the left edge
+of the page in a fresh Vite React app, remove `display: flex` and
+`place-items: center` from `body` in the template's `src/index.css`.
+
 ### `<AnatomyViewer>` props
 
 | Prop | Type | Default | |

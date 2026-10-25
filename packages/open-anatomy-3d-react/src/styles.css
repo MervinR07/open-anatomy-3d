@@ -46,8 +46,19 @@
   --oa3d-shadow: rgb(0 0 0 / 0.5);
 }
 
+.oa3d-viewer,
+.oa3d-viewer * {
+  box-sizing: border-box;
+}
+
+/* Host pages often style every <button> (padding, borders, colours); the
+   viewer's buttons set what they need, so start them from a clean slate. */
 .oa3d-viewer button {
+  margin: 0;
   font-family: inherit;
+  line-height: normal;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .oa3d-viewer :focus-visible {
@@ -294,17 +305,16 @@
 
 .oa3d-zoom {
   width: 34px;
+  padding: 0;
   font-size: 18px;
 }
 
 .oa3d-zoom-out {
-  left: 50%;
-  margin-left: -80px;
+  left: calc(50% - 80px);
 }
 
 .oa3d-zoom-in {
-  left: 50%;
-  margin-left: 46px;
+  left: calc(50% + 46px);
 }
 
 .oa3d-reset {
@@ -348,6 +358,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
   cursor: ew-resize;
   touch-action: none;
   box-shadow: 0 2px 8px color-mix(in srgb, var(--oa3d-accent-deep) 35%, transparent);
@@ -361,6 +372,7 @@
 .oa3d-rotate-icon {
   width: 16px;
   height: 16px;
+  flex-shrink: 0;
 }
 
 /* ---------- Loading ---------- */

@@ -1,6 +1,6 @@
 {
   "name": "open-anatomy-3d-react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Interactive 3D human anatomy viewer for React (react-three-fiber): orbit, zoom, toggle body systems, hover and click any structure, pin callouts.",
   "keywords": [
     "anatomy",
